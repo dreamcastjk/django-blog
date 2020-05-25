@@ -4,7 +4,7 @@ from django.views.generic import View
 # Create your views here.
 from blog.models import Post, Tag
 from .forms import TagForm, PostForm
-from .utils import ObjectDetailMixin, ObjectCreateMixin
+from .utils import ObjectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin
 
 
 def post_list(request):
@@ -35,4 +35,17 @@ class TagCreate(ObjectCreateMixin, View):
 class PostCreate(ObjectCreateMixin, View):
     model_form = PostForm
     template = 'blog/post_create_form.html'
+
+
+class TagUpdate(ObjectUpdateMixin, View):
+    model = Tag
+    model_form = TagForm
+    template = 'blog/tag_updated_form.html'
+
+
+class PostUpdate(ObjectUpdateMixin, View):
+    model = Post
+    model_form = PostForm
+    template = 'blog/post_update_form.html'
+
 
